@@ -1,10 +1,23 @@
-n = int(input())
-n1 = 1000 - n
-count = 0
+N, K = map(int, input().split())
 
-list = [500, 100, 50, 10, 5, 1]
-for i in list:
-    count += n1 // i
-    n1 %= i
+arr = []
+arr2 = []
+result = 0
 
-print (count)
+for _ in range(N): # 보석 개수 
+    M, V = map(int, input().split()) # 무게, 가격
+    arr.append([M, V])
+    
+arr.sort(key= lambda x: (x[1], x[0]), reverse=True)
+
+for _ in range(K): # 가방 개수 
+    C = int(input()) # 가방 최대 무게 
+    arr2.append(C)
+
+for x, y in arr:
+    for i in arr2:
+        if (x <= i):
+            result += y
+            print("x,",x," i", i, "== y",y,"re",result)
+            
+print(result)
